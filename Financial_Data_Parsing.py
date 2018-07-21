@@ -1,26 +1,7 @@
 import pandas as pd
 from pandas.tseries.holiday import USFederalHolidayCalendar
 from pandas.tseries.offsets import CustomBusinessDay
-import matplotlib.pyplot as plt
-
-from scipy import stats
-from statsmodels.stats.multicomp import pairwise_tukeyhsd
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import Imputer, MinMaxScaler, StandardScaler
-
-from sklearn.naive_bayes import GaussianNB
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC
-from sklearn.linear_model import LogisticRegression
-
-from sklearn.cluster import KMeans
-from sklearn.cluster import AgglomerativeClustering
-from sklearn.cluster import AffinityPropagation
-from sklearn.neighbors import LocalOutlierFactor
 
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
@@ -225,7 +206,7 @@ for title in titles:
     data["pct_" + title] = 1 + (data[title+"2"] - data[title])/data[title]
 
 data['long_short'] = data['pct_SnP'].apply(is_long_short)
-out_filename = "Economy_Indicators_Data" + "\\" + "Ultimate_Assortion_pct_Change_Daily_Insoo.csv"
+out_filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Daily_Insoo.csv"
 data.to_csv(out_filename, sep=',', encoding='utf-8')
 
 for title in titles:
@@ -243,7 +224,7 @@ for title in titles:
     monthly_data["pct_" + title] = 1 + (monthly_data[title+"2"] - monthly_data[title])/monthly_data[title]
 
 monthly_data['long_short'] = monthly_data['pct_SnP'].apply(is_long_short)
-out_filename = "Economy_Indicators_Data" + "\\" + "Ultimate_Assortion_pct_Change_Monthly_Insoo.csv"
+out_filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Monthly_Insoo.csv"
 monthly_data.to_csv(out_filename, sep=',', encoding='utf-8')
 
 quarterly_data = pd.DataFrame()
@@ -257,7 +238,7 @@ for title in titles:
     quarterly_data["pct_" + title] = 1 + (quarterly_data[title+"2"] - quarterly_data[title])/quarterly_data[title]
 
 quarterly_data['long_short'] = quarterly_data['pct_SnP'].apply(is_long_short)
-out_filename = "Economy_Indicators_Data" + "\\" + "Ultimate_Assortion_pct_Change_Quarterly_Insoo.csv"
+out_filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Quarterly_Insoo.csv"
 quarterly_data.to_csv(out_filename, sep=',', encoding='utf-8')
 
 yearly_data = pd.DataFrame()
@@ -269,5 +250,5 @@ for title in titles:
     yearly_data["pct_" + title] = 1 + (yearly_data[title+"2"] - yearly_data[title])/yearly_data[title]
 
 yearly_data['long_short'] = yearly_data['pct_SnP'].apply(is_long_short)
-out_filename = "Economy_Indicators_Data" + "\\" + "Ultimate_Assortion_pct_Change_Yearly_Insoo.csv"
+out_filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Yearly_Insoo.csv"
 yearly_data.to_csv(out_filename, sep=',', encoding='utf-8')
