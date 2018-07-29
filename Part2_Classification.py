@@ -1,6 +1,4 @@
 import pandas as pd
-from pandas.tseries.holiday import USFederalHolidayCalendar
-from pandas.tseries.offsets import CustomBusinessDay
 import matplotlib.pyplot as plt
 
 from scipy import stats
@@ -24,12 +22,17 @@ from sklearn.neighbors import LocalOutlierFactor
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 
-filename = "Economy_Indicators_Data" + "\\" + "Ultimate_Assortion_pct_Change_Daily_Insoo.csv"
+filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Daily_Insoo.csv"
 data = pd.read_csv(filename, sep=',', encoding='utf-8')
 #titles_wo_SnP = ['GDP', 'MonetaryBase', 'CPI', 'HomePrice', 'Loans', 'Employment','Income', 'ConstructionSpending', 'FedFundRate', 'USDollar', 'CrudeOil']
-titles_wo_SnP = ['GDP', 'MonetaryBase', 'CPI', 'HomePrice', 'Loans', 'Employment','ConstructionSpending', 'USDollar', 'CrudeOil']
+#titles_wo_SnP = ['GDP', 'MonetaryBase', 'CPI', 'HomePrice', 'Loans', 'Employment','ConstructionSpending', 'USDollar', 'CrudeOil']
 
-X = data[titles_wo_SnP].values
+titles = ['SnP', 'GDP', 'MonetaryBase', 'CPI', 'HomePrice', 'Loans', 'Employment',
+         'Income', 'ConstructionSpending', 'FedFundRate', 'USDollar', 'CrudeOil', 'Import_Unit_Value',
+          'Import_Volume', 'Import_Value', 'Export_Unit_Value', 'Export_Volume', 'Export_Value' ]
+
+#X = data[titles_wo_SnP].values
+X = data[titles].values
 y = data['SnP'].values
 X_train, X_test, y_train, y_test = train_test_split(X, y)
 
@@ -51,7 +54,11 @@ plt.hist(y_test - Y_fit_poly_linear)
 plt.show()
 
 #titles_ = ['pct_GDP', 'pct_MonetaryBase', 'pct_CPI', 'pct_HomePrice', 'pct_Loans', 'pct_Employment', 'pct_Income', 'pct_ConstructionSpending', 'pct_FedFundRate', 'pct_USDollar', 'pct_CrudeOil']
-titles_ = ['pct_GDP', 'pct_MonetaryBase', 'pct_CPI', 'pct_HomePrice', 'pct_Loans', 'pct_Employment', 'pct_ConstructionSpending', 'pct_USDollar', 'pct_CrudeOil']
+titles_ = ['pct_GDP', 'pct_MonetaryBase', 'pct_CPI', 'pct_HomePrice', 'pct_Loans', 'pct_Employment',
+           'pct_Income', 'pct_ConstructionSpending', 'pct_FedFundRate','pct_USDollar', 'pct_CrudeOil',
+           'pct_Import_Unit_Value', 'pct_Import_Volume', 'pct_Import_Value', 'pct_Export_Unit_Value', 'pct_Export_Volume', 'pct_Export_Value'
+           ]
+
 n = 4 #knn
 
 X = data[titles_].values
@@ -83,7 +90,7 @@ SVC_model_pipline = make_pipeline(
 SVC_model_pipline.fit(X_train, y_train)
 SVC_model_pipline_daily_minmax = SVC_model_pipline.score(X_test, y_test)
 
-filename = "Economy_Indicators_Data" + "\\" + "Ultimate_Assortion_pct_Change_Monthly_Insoo.csv"
+filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Monthly_Insoo.csv"
 monthly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
 
 X = monthly_data[titles_].values
@@ -114,7 +121,7 @@ SVC_model_pipline = make_pipeline(
 SVC_model_pipline.fit(X_train, y_train)
 SVC_model_pipline_monthly_minmax = SVC_model_pipline.score(X_test,y_test)
 
-filename = "Economy_Indicators_Data" + "\\" + "Ultimate_Assortion_pct_Change_Quarterly_Insoo.csv"
+filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Quarterly_Insoo.csv"
 quarterly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
 
 X = quarterly_data[titles_].values
@@ -145,7 +152,7 @@ SVC_model_pipline = make_pipeline(
 SVC_model_pipline.fit(X_train, y_train)
 SVC_model_pipline_quarterly_minmax = SVC_model_pipline.score(X_test, y_test)
 
-filename = "Economy_Indicators_Data" + "\\" + "Ultimate_Assortion_pct_Change_Yearly_Insoo.csv"
+filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Yearly_Insoo.csv"
 yearly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
 
 X = yearly_data[titles_].values
