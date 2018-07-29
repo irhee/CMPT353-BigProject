@@ -23,10 +23,43 @@ from sklearn.decomposition import PCA
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 
+def GNB_KN_SVC_SVC1 (data,xlabel,ylabel,n):
+    X = data[xlabel].values
+    y = data[ylabel].values
+    X_train, X_test, y_train, y_test = train_test_split(X, y)
+
+    GuassianNB_model = GaussianNB()
+    GuassianNB_model.fit(X_train, y_train)
+    GNB = GuassianNB_model.score(X_test, y_test)
+
+
+    KNeighbor_model = KNeighborsClassifier(n_neighbors=n)
+    KNeighbor_model.fit(X_train, y_train)
+    KN= KNeighbor_model.score(X_test, y_test)
+
+    SVC_model_pipeline = make_pipeline(
+        StandardScaler(),
+        SVC(kernel='linear', C=2)
+    )
+    SVC_model_pipeline.fit(X_train, y_train)
+    SVM= SVC_model_pipeline.score(X_test, y_test)
+
+
+    SVC_model_pipline = make_pipeline(
+        MinMaxScaler(),
+        SVC(kernel='linear', C=2)
+    )
+
+    SVC_model_pipline.fit(X_train, y_train)
+    SVM1= SVC_model_pipline.score(X_test, y_test)
+
+    return GNB,KN,SVM,SVM1
+
 filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Daily_Insoo.csv"
 data = pd.read_csv(filename, sep=',', encoding='utf-8')
 #titles_wo_SnP = ['GDP', 'MonetaryBase', 'CPI', 'HomePrice', 'Loans', 'Employment','Income', 'ConstructionSpending', 'FedFundRate', 'USDollar', 'CrudeOil']
 #titles_wo_SnP = ['GDP', 'MonetaryBase', 'CPI', 'HomePrice', 'Loans', 'Employment','ConstructionSpending', 'USDollar', 'CrudeOil']
+
 
 titles = [ 'GDP', 'MonetaryBase', 'CPI', 'HomePrice', 'Loans', 'Employment',
          'Income', 'ConstructionSpending', 'FedFundRate', 'USDollar', 'CrudeOil', 'Import_Unit_Value',
@@ -54,135 +87,32 @@ plt.subplot(1, 2, 2)
 plt.hist(y_test - Y_fit_poly_linear)
 plt.show()
 
-#titles_ = ['pct_GDP', 'pct_MonetaryBase', 'pct_CPI', 'pct_HomePrice', 'pct_Loans', 'pct_Employment', 'pct_Income', 'pct_ConstructionSpending', 'pct_FedFundRate', 'pct_USDollar', 'pct_CrudeOil']
-titles_ = ['pct_GDP', 'pct_MonetaryBase', 'pct_CPI', 'pct_HomePrice', 'pct_Loans', 'pct_Employment',
+xlabel = ['pct_GDP', 'pct_MonetaryBase', 'pct_CPI', 'pct_HomePrice', 'pct_Loans', 'pct_Employment',
            'pct_Income', 'pct_ConstructionSpending', 'pct_FedFundRate','pct_USDollar', 'pct_CrudeOil',
            'pct_Import_Unit_Value', 'pct_Import_Volume', 'pct_Import_Value', 'pct_Export_Unit_Value', 'pct_Export_Volume', 'pct_Export_Value'
            ]
 
 n = 4 #knn
+ylabel='long_short'
 
-X = data[titles_].values
-y = data['long_short'].values
-X_train, X_test, y_train, y_test = train_test_split(X, y)
+filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Daily_Insoo.csv"
+data = pd.read_csv(filename, sep=',', encoding='utf-8')
+GuassianNB_model_daily,KNeighbor_model_daily,SVC_model_pipline_daily_standard, SVC_model_pipline_daily_minmax =GNB_KN_SVC_SVC1 (data,xlabel,ylabel,n)
 
-GuassianNB_model = GaussianNB()
-GuassianNB_model.fit(X_train, y_train)
-GuassianNB_model_daily = GuassianNB_model.score(X_test, y_test)
-
-#neighbor_size = range(1,8)
-#for n in neighbor_size:
-KNeighbor_model = KNeighborsClassifier(n_neighbors=n)
-KNeighbor_model.fit(X_train, y_train)
-KNeighbor_model_daily = KNeighbor_model.score(X_test, y_test)
-
-SVC_model_pipeline = make_pipeline(
-    StandardScaler(),
-    SVC(kernel='linear', C=2)
-)
-SVC_model_pipeline.fit(X_train, y_train)
-SVC_model_pipline_daily_standard = SVC_model_pipeline.score(X_test, y_test)
-
-
-SVC_model_pipline = make_pipeline(
-    MinMaxScaler(),
-    SVC(kernel='linear', C=2)
-)
-SVC_model_pipline.fit(X_train, y_train)
-SVC_model_pipline_daily_minmax = SVC_model_pipline.score(X_test, y_test)
 
 filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Monthly_Insoo.csv"
 monthly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
+GuassianNB_model_monthly,KNeighbor_model_monthly,SVC_model_pipline_monthly_standard, SVC_model_pipline_monthly_minmax =GNB_KN_SVC_SVC1 ( monthly_data,xlabel,ylabel,n)
 
-X = monthly_data[titles_].values
-y = monthly_data['long_short'].values
-X_train, X_test, y_train, y_test = train_test_split(X, y)
-
-GuassianNB_model = GaussianNB()
-GuassianNB_model.fit(X_train, y_train)
-GuassianNB_model_monthly = GuassianNB_model.score(X_test, y_test)
-
-#neighbor_size = range(1,8)
-#for n in neighbor_size:
-KNeighbor_model = KNeighborsClassifier(n_neighbors=n)
-KNeighbor_model.fit(X_train, y_train)
-KNeighbor_model_monthly = KNeighbor_model.score(X_test, y_test)
-
-SVC_model_pipline = make_pipeline(
-    StandardScaler(),
-    SVC(kernel='linear', C=2)
-)
-SVC_model_pipline.fit(X_train, y_train)
-SVC_model_pipline_monthly_standard = SVC_model_pipline.score(X_test, y_test)
-
-SVC_model_pipline = make_pipeline(
-    MinMaxScaler(),
-    SVC(kernel='linear', C=2)
-)
-SVC_model_pipline.fit(X_train, y_train)
-SVC_model_pipline_monthly_minmax = SVC_model_pipline.score(X_test,y_test)
 
 filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Quarterly_Insoo.csv"
 quarterly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
+GuassianNB_model_quarterly,KNeighbor_model_quarterly,SVC_model_pipline_quarterly_standard, SVC_model_pipline_quarterly_minmax =GNB_KN_SVC_SVC1 ( quarterly_data,xlabel,ylabel,n)
 
-X = quarterly_data[titles_].values
-y = quarterly_data['long_short'].values
-X_train, X_test, y_train, y_test = train_test_split(X, y)
-
-GuassianNB_model = GaussianNB()
-GuassianNB_model.fit(X_train, y_train)
-GuassianNB_model_quarterly = GuassianNB_model.score(X_test, y_test)
-
-# neighbor_size = range(1,8)
-# for n in neighbor_size:
-KNeighbor_model = KNeighborsClassifier(n_neighbors=n)
-KNeighbor_model.fit(X_train, y_train)
-KNeighbor_model_quarterly = KNeighbor_model.score(X_test, y_test)
-
-SVC_model_pipline = make_pipeline(
-    StandardScaler(),
-    SVC(kernel='linear', C=2)
-)
-SVC_model_pipline.fit(X_train, y_train)
-SVC_model_pipline_quarterly_standard = SVC_model_pipline.score(X_test, y_test)
-
-SVC_model_pipline = make_pipeline(
-    MinMaxScaler(),
-    SVC(kernel='linear', C=2)
-)
-SVC_model_pipline.fit(X_train, y_train)
-SVC_model_pipline_quarterly_minmax = SVC_model_pipline.score(X_test, y_test)
 
 filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Yearly_Insoo.csv"
 yearly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
-
-X = yearly_data[titles_].values
-y = yearly_data['long_short'].values
-X_train, X_test, y_train, y_test = train_test_split(X, y)
-
-GuassianNB_model = GaussianNB()
-GuassianNB_model.fit(X_train, y_train)
-GuassianNB_model_yearly = GuassianNB_model.score(X_test, y_test)
-
-# neighbor_size = range(1,8)
-# for n in neighbor_size:
-KNeighbor_model = KNeighborsClassifier(n_neighbors=n)
-KNeighbor_model.fit(X_train, y_train)
-KNeighbor_model_yearly = KNeighbor_model.score(X_test, y_test)
-
-SVC_model_pipline = make_pipeline(
-    StandardScaler(),
-    SVC(kernel='linear', C=2)
-)
-SVC_model_pipline.fit(X_train, y_train)
-SVC_model_pipline_yearly_standard = SVC_model_pipline.score(X_test,y_test)
-
-SVC_model_pipline = make_pipeline(
-    MinMaxScaler(),
-    SVC(kernel='linear', C=2)
-)
-SVC_model_pipline.fit(X_train, y_train)
-SVC_model_pipline_yearly_minmax = SVC_model_pipline.score(X_test, y_test)
+GuassianNB_model_yearly,KNeighbor_model_yearly,SVC_model_pipline_yearly_standard, SVC_model_pipline_yearly_minmax =GNB_KN_SVC_SVC1 ( yearly_data,xlabel,ylabel,n)
 
 OUTPUT_TEMPLATE = (
     'Daily\n'
