@@ -27,7 +27,7 @@ data = pd.read_csv(filename, sep=',', encoding='utf-8')
 #titles_wo_SnP = ['GDP', 'MonetaryBase', 'CPI', 'HomePrice', 'Loans', 'Employment','Income', 'ConstructionSpending', 'FedFundRate', 'USDollar', 'CrudeOil']
 #titles_wo_SnP = ['GDP', 'MonetaryBase', 'CPI', 'HomePrice', 'Loans', 'Employment','ConstructionSpending', 'USDollar', 'CrudeOil']
 
-titles = ['SnP', 'GDP', 'MonetaryBase', 'CPI', 'HomePrice', 'Loans', 'Employment',
+titles = [ 'GDP', 'MonetaryBase', 'CPI', 'HomePrice', 'Loans', 'Employment',
          'Income', 'ConstructionSpending', 'FedFundRate', 'USDollar', 'CrudeOil', 'Import_Unit_Value',
           'Import_Volume', 'Import_Value', 'Export_Unit_Value', 'Export_Volume', 'Export_Value' ]
 
