@@ -29,44 +29,32 @@ OUTPUT_TEMPLATE = (
     'kNN classifier:      {knn_daily:.3g}\n'
     'Standard SVM classifier:      {svm_daily_standard:.3g}\n'
     'MinMax SVM classifier:      {svm_daily_minmax:.3g}\n'
+    'PCA(2),clusters:\n'
+    '{df_daily}\n'              
     'Monthly\n'
     'Bayesian classifier: {bayes_monthly:.3g}\n'
     'kNN classifier:      {knn_monthly:.3g}\n'
     'Standard SVM classifier:      {svm_monthly_standard:.3g}\n'
     'MinMax SVM classifier:      {svm_monthly_minmax:.3g}\n'
+    'PCA(2),clusters:\n'
+    '{df_monthly}\n'        
     'Quarterly\n'
     'Bayesian classifier: {bayes_quarterly:.3g}\n'
     'kNN classifier:      {knn_quarterly:.3g}\n'
     'Standard SVM classifier:      {svm_quarterly_standard:.3g}\n'
     'MinMax SVM classifier:      {svm_quarterly_minmax:.3g}\n'
+        'PCA(2),clusters:\n'
+    '{df_quarterly}\n'        
     'Yearly\n'
     'Bayesian classifier: {bayes_yearly:.3g}\n'
     'kNN classifier:      {knn_yearly:.3g}\n'
     'Standard SVM classifier:      {svm_yearly_standard:.3g}\n'
     'MinMax SVM classifier:      {svm_yearly_minmax:.3g}\n'
-    'Daily after PCA(2)\n'
-    'Bayesian classifier: {bayes_daily1:.3g}\n'
-    'kNN classifier:      {knn_daily1:.3g}\n'
-    'Standard SVM classifier:      {svm_daily_standard1:.3g}\n'
-    'MinMax SVM classifier:      {svm_daily_minmax1:.3g}\n'
-    'Monthly after PCA(2)\n'
-    'Bayesian classifier: {bayes_monthly1:.3g}\n'
-    'kNN classifier:      {knn_monthly1:.3g}\n'
-    'Standard SVM classifier:      {svm_monthly_standard1:.3g}\n'
-    'MinMax SVM classifier:      {svm_monthly_minmax1:.3g}\n'
-    'Quarterly after PCA(2)\n'
-    'Bayesian classifier: {bayes_quarterly1:.3g}\n'
-    'kNN classifier:      {knn_quarterly1:.3g}\n'
-    'Standard SVM classifier:      {svm_quarterly_standard1:.3g}\n'
-    'MinMax SVM classifier:      {svm_quarterly_minmax1:.3g}\n'
-    'Yearly after PCA(2)\n'
-    'Bayesian classifier: {bayes_yearly1:.3g}\n'
-    'kNN classifier:      {knn_yearly1:.3g}\n'
-    'Standard SVM classifier:      {svm_yearly_standard1:.3g}\n'
-    'MinMax SVM classifier:      {svm_yearly_minmax1:.3g}\n'
+    'PCA(2),clusters:\n'
+    '{df_yearly}\n'        
 )
 
-def GNB_KN_SVC_SVC1 (X,y,n):
+def GNB_KN_SVC_SVC1 (X,y,n,no_clusters):
     X_train, X_test, y_train, y_test = train_test_split(X, y)
 
     GuassianNB_model = GaussianNB()
@@ -80,7 +68,7 @@ def GNB_KN_SVC_SVC1 (X,y,n):
 
     SVC_model_pipeline = make_pipeline(
         StandardScaler(),
-        SVC(kernel='linear', C=2)
+        SVC(kernel='rbf', C=1)
     )
     SVC_model_pipeline.fit(X_train, y_train)
     SVM= SVC_model_pipeline.score(X_test, y_test)
@@ -88,23 +76,31 @@ def GNB_KN_SVC_SVC1 (X,y,n):
 
     SVC_model_pipline = make_pipeline(
         MinMaxScaler(),
-        SVC(kernel='linear', C=2)
+        SVC(kernel='rbf', C=1)
     )
 
     SVC_model_pipline.fit(X_train, y_train)
     SVM1= SVC_model_pipline.score(X_test, y_test)
 
-    
-
-    return GNB,KN,SVM,SVM1
-
-def get_pca(X):
     flatten_model = make_pipeline(
-       # MinMaxScaler(),
-        PCA(2)
+    #MinMaxScaler(),
+    PCA(2),
+    #StandardScaler(),
+    KMeans(n_clusters=no_clusters)
     )
-    X2 = flatten_model.fit_transform(X)
-    return X2
+    flatten_model.fit(X)
+    clusters=flatten_model.predict(X)
+    #plt.scatter(X2[:, 0], X2[:, 1], c=clusters, cmap='Set1', edgecolor='k')
+    df = pd.DataFrame({
+        'cluster': clusters,
+        'long_short': y,
+    })
+    df= pd.crosstab(df['long_short'], df['cluster'])
+
+    
+    return GNB,KN,SVM,SVM1,df
+
+  
 
 filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Daily_Insoo.csv"
 data = pd.read_csv(filename, sep=',', encoding='utf-8')
@@ -144,35 +140,39 @@ xlabel = ['pct_GDP', 'pct_MonetaryBase', 'pct_CPI', 'pct_HomePrice', 'pct_Loans'
            ]
 
 n = 4 #knn
+m=10 #no_cluster
 ylabel='long_short'
 
 filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Daily_Insoo.csv"
 data = pd.read_csv(filename, sep=',', encoding='utf-8')
 data_x = data[xlabel].values
 data_y= data[ylabel].values
-GuassianNB_model_daily,KNeighbor_model_daily,SVC_model_pipline_daily_standard, SVC_model_pipline_daily_minmax =GNB_KN_SVC_SVC1 (data_x,data_y,n)
-GNB_PCA_daily,KN_PCA_daily,SVC_PCA_daily,SVC_PCA_daily_minmax=GNB_KN_SVC_SVC1 (get_pca(data_x),data_y,n)
+GuassianNB_model_daily,KNeighbor_model_daily,SVC_model_pipline_daily_standard, SVC_model_pipline_daily_minmax,df_daily =GNB_KN_SVC_SVC1 (data_x,data_y,n,m)
+#GNB_PCA_daily,KN_PCA_daily,SVC_PCA_daily,SVC_PCA_daily_minmax=GNB_KN_SVC_SVC1 (get_pca(data_x),data_y,n)
+#pca_m(data_x,data_y,365)
+
 
 filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Monthly_Insoo.csv"
 monthly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
 monthly_x = monthly_data[xlabel].values
 monthly_y= monthly_data[ylabel].values
-GuassianNB_model_monthly,KNeighbor_model_monthly,SVC_model_pipline_monthly_standard, SVC_model_pipline_monthly_minmax =GNB_KN_SVC_SVC1 ( monthly_x,monthly_y,n)
-GNB_PCA_monthly,KN_PCA_monthly,SVC_PCA_monthly,SVC_PCA_monthly_minmax=GNB_KN_SVC_SVC1 (get_pca(monthly_x),monthly_y,n)
+GuassianNB_model_monthly,KNeighbor_model_monthly,SVC_model_pipline_monthly_standard, SVC_model_pipline_monthly_minmax,df_monthly =GNB_KN_SVC_SVC1 ( monthly_x,monthly_y,n, m)
+#GNB_PCA_monthly,KN_PCA_monthly,SVC_PCA_monthly,SVC_PCA_monthly_minmax=GNB_KN_SVC_SVC1 (get_pca(monthly_x),monthly_y,n)
+#pca_m(monthly_x,monthly_y,6)
 
 filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Quarterly_Insoo.csv"
 quarterly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
 quarterly_x = quarterly_data[xlabel].values
 quarterly_y= quarterly_data[ylabel].values
-GuassianNB_model_quarterly,KNeighbor_model_quarterly,SVC_model_pipline_quarterly_standard, SVC_model_pipline_quarterly_minmax =GNB_KN_SVC_SVC1 ( quarterly_x,quarterly_y,n)
-GNB_PCA_quarterly,KN_PCA_quarterly,SVC_PCA_quarterly,SVC_PCA_quarterly_minmax=GNB_KN_SVC_SVC1 (get_pca(quarterly_x),quarterly_y,n)
+GuassianNB_model_quarterly,KNeighbor_model_quarterly,SVC_model_pipline_quarterly_standard, SVC_model_pipline_quarterly_minmax,df_quarterly =GNB_KN_SVC_SVC1 ( quarterly_x,quarterly_y,n,m)
+#GNB_PCA_quarterly,KN_PCA_quarterly,SVC_PCA_quarterly,SVC_PCA_quarterly_minmax=GNB_KN_SVC_SVC1 (get_pca(quarterly_x),quarterly_y,n)
 
 filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Yearly_Insoo.csv"
 yearly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
 yearly_x = yearly_data[xlabel].values
 yearly_y= yearly_data[ylabel].values
-GuassianNB_model_yearly,KNeighbor_model_yearly,SVC_model_pipline_yearly_standard, SVC_model_pipline_yearly_minmax =GNB_KN_SVC_SVC1 ( yearly_x,yearly_y,n)
-GNB_PCA_yearly,KN_PCA_yearly,SVC_PCA_yearly,SVC_PCA_yearly_minmax=GNB_KN_SVC_SVC1 (get_pca(data_x),data_y,n)
+GuassianNB_model_yearly,KNeighbor_model_yearly,SVC_model_pipline_yearly_standard, SVC_model_pipline_yearly_minmax,df_yearly =GNB_KN_SVC_SVC1 ( yearly_x,yearly_y,n,m)
+#GNB_PCA_yearly,KN_PCA_yearly,SVC_PCA_yearly,SVC_PCA_yearly_minmax=GNB_KN_SVC_SVC1 (get_pca(data_x),data_y,n)
 
 
 print(OUTPUT_TEMPLATE.format(
@@ -180,36 +180,23 @@ print(OUTPUT_TEMPLATE.format(
     knn_daily=KNeighbor_model_daily,
     svm_daily_standard=SVC_model_pipline_daily_standard,
     svm_daily_minmax=SVC_model_pipline_daily_minmax,
+    df_daily=df_daily,
     bayes_monthly=GuassianNB_model_monthly,
     knn_monthly=KNeighbor_model_monthly,
     svm_monthly_standard=SVC_model_pipline_monthly_standard,
     svm_monthly_minmax=SVC_model_pipline_monthly_minmax,
+    df_monthly=df_monthly,
     bayes_quarterly=GuassianNB_model_quarterly,
     knn_quarterly=KNeighbor_model_quarterly,
     svm_quarterly_standard=SVC_model_pipline_quarterly_standard,
     svm_quarterly_minmax=SVC_model_pipline_quarterly_minmax,
+    df_quarterly=df_quarterly,
     bayes_yearly=GuassianNB_model_yearly,
     knn_yearly=KNeighbor_model_yearly,
     svm_yearly_standard=SVC_model_pipline_yearly_standard,
     svm_yearly_minmax=SVC_model_pipline_yearly_minmax,
-    bayes_daily1=GNB_PCA_daily,
-    knn_daily1=KN_PCA_daily,
-    svm_daily_standard1=SVC_PCA_daily,
-    svm_daily_minmax1=SVC_PCA_daily_minmax,
-    bayes_monthly1=GNB_PCA_monthly,
-    knn_monthly1=KN_PCA_monthly,
-    svm_monthly_standard1=SVC_PCA_monthly,
-    svm_monthly_minmax1=SVC_PCA_monthly_minmax,
-    bayes_quarterly1=GNB_PCA_quarterly,
-    knn_quarterly1=KN_PCA_quarterly,
-    svm_quarterly_standard1=SVC_PCA_quarterly,
-    svm_quarterly_minmax1=SVC_PCA_quarterly_minmax,
-    bayes_yearly1=GNB_PCA_yearly,
-    knn_yearly1=KN_PCA_yearly,
-    svm_yearly_standard1=SVC_PCA_yearly,
-    svm_yearly_minmax1=SVC_PCA_yearly_minmax,
-    
-    
+    df_yearly=df_yearly
+   
 ))
 
 
