@@ -53,6 +53,25 @@ OUTPUT_TEMPLATE = (
     'PCA(2),clusters:\n'
     '{df_yearly}\n'        
 )
+def get_pca(X):
+
+    flatten_model = make_pipeline(
+        MinMaxScaler(),
+        PCA(2)
+    )
+    X2 = flatten_model.fit_transform(X)
+    assert X2.shape == (X.shape[0], 2)
+    return X2
+
+def get_clusters(X,no_clusters):
+
+    model = make_pipeline(
+        # TODO
+        StandardScaler(),
+        KMeans(n_clusters=no_clusters)
+    )
+    model.fit(X)
+    return model.predict(X)
 
 def GNB_KN_SVC_SVC1 (X,y,n,no_clusters):
     X_train, X_test, y_train, y_test = train_test_split(X, y)
@@ -82,15 +101,9 @@ def GNB_KN_SVC_SVC1 (X,y,n,no_clusters):
     SVC_model_pipline.fit(X_train, y_train)
     SVM1= SVC_model_pipline.score(X_test, y_test)
 
-    flatten_model = make_pipeline(
-    #MinMaxScaler(),
-    PCA(2),
-    #StandardScaler(),
-    KMeans(n_clusters=no_clusters)
-    )
-    flatten_model.fit(X)
-    clusters=flatten_model.predict(X)
-    #plt.scatter(X2[:, 0], X2[:, 1], c=clusters, cmap='Set1', edgecolor='k')
+    X2 = get_pca(X)
+    clusters = get_clusters(X,no_clusters)
+    plt.scatter(X2[:, 0], X2[:, 1], c=clusters, cmap='Set1', edgecolor='k')
     df = pd.DataFrame({
         'cluster': clusters,
         'long_short': y,
@@ -140,13 +153,14 @@ xlabel = ['pct_GDP', 'pct_MonetaryBase', 'pct_CPI', 'pct_HomePrice', 'pct_Loans'
            ]
 
 n = 4 #knn
-m=10 #no_cluster
+m=5 #no_cluster
 ylabel='long_short'
 
 filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Daily_Insoo.csv"
 data = pd.read_csv(filename, sep=',', encoding='utf-8')
 data_x = data[xlabel].values
 data_y= data[ylabel].values
+plt.subplot(1, 4, 1)
 GuassianNB_model_daily,KNeighbor_model_daily,SVC_model_pipline_daily_standard, SVC_model_pipline_daily_minmax,df_daily =GNB_KN_SVC_SVC1 (data_x,data_y,n,m)
 #GNB_PCA_daily,KN_PCA_daily,SVC_PCA_daily,SVC_PCA_daily_minmax=GNB_KN_SVC_SVC1 (get_pca(data_x),data_y,n)
 #pca_m(data_x,data_y,365)
@@ -156,6 +170,7 @@ filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Monthly_Insoo
 monthly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
 monthly_x = monthly_data[xlabel].values
 monthly_y= monthly_data[ylabel].values
+plt.subplot(1, 4, 2)
 GuassianNB_model_monthly,KNeighbor_model_monthly,SVC_model_pipline_monthly_standard, SVC_model_pipline_monthly_minmax,df_monthly =GNB_KN_SVC_SVC1 ( monthly_x,monthly_y,n, m)
 #GNB_PCA_monthly,KN_PCA_monthly,SVC_PCA_monthly,SVC_PCA_monthly_minmax=GNB_KN_SVC_SVC1 (get_pca(monthly_x),monthly_y,n)
 #pca_m(monthly_x,monthly_y,6)
@@ -164,6 +179,7 @@ filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Quarterly_Ins
 quarterly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
 quarterly_x = quarterly_data[xlabel].values
 quarterly_y= quarterly_data[ylabel].values
+plt.subplot(1, 4, 3)
 GuassianNB_model_quarterly,KNeighbor_model_quarterly,SVC_model_pipline_quarterly_standard, SVC_model_pipline_quarterly_minmax,df_quarterly =GNB_KN_SVC_SVC1 ( quarterly_x,quarterly_y,n,m)
 #GNB_PCA_quarterly,KN_PCA_quarterly,SVC_PCA_quarterly,SVC_PCA_quarterly_minmax=GNB_KN_SVC_SVC1 (get_pca(quarterly_x),quarterly_y,n)
 
@@ -171,6 +187,7 @@ filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Yearly_Insoo.
 yearly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
 yearly_x = yearly_data[xlabel].values
 yearly_y= yearly_data[ylabel].values
+plt.subplot(1, 4, 4)
 GuassianNB_model_yearly,KNeighbor_model_yearly,SVC_model_pipline_yearly_standard, SVC_model_pipline_yearly_minmax,df_yearly =GNB_KN_SVC_SVC1 ( yearly_x,yearly_y,n,m)
 #GNB_PCA_yearly,KN_PCA_yearly,SVC_PCA_yearly,SVC_PCA_yearly_minmax=GNB_KN_SVC_SVC1 (get_pca(data_x),data_y,n)
 
@@ -198,5 +215,6 @@ print(OUTPUT_TEMPLATE.format(
     df_yearly=df_yearly
    
 ))
+plt.show()
 
 
