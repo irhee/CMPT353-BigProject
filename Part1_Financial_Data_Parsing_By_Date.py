@@ -10,12 +10,10 @@ pd.set_option('display.float_format', '{:}'.format)
 
 #Classify Long==1, Short==0
 def is_long_short(num):
-    ret = ''
-    if (1.0 <= num):
-        ret = 1
+    if (1.00 > num):
+        return 0
     else:
-        ret = 0
-    return ret
+        return 1
 
 #Seperate DATE into Year, Month and Day
 def DATE_DIVIDER(DataFrame):
