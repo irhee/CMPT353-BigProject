@@ -79,7 +79,7 @@ def GNB_KN_SVC_SVC1 (X,y,n,no_clusters,title):
 
     X_train, X_test, y_train, y_test = train_test_split(X, y)
 
-    sns.countplot(y, palette='hls').set_title(title)
+    sns.countplot(y, palette='hls').set_title(title + " Count")
     plt.show()
 
     GuassianNB_model = GaussianNB()
@@ -115,7 +115,7 @@ def GNB_KN_SVC_SVC1 (X,y,n,no_clusters,title):
         'cluster':clusters
     })
 
-    sns.scatterplot(x='x',y='y', hue='cluster', data=dd).set_title(title)
+    sns.scatterplot(x='x',y='y', hue='cluster', data=dd).set_title(title + " PCA")
     plt.show()
 
     #plt.scatter(X2[:, 0], X2[:, 1], c=clusters, cmap='Set1', edgecolor='k')
@@ -167,7 +167,9 @@ def main():
     data_x = data[xlabel].values
     data_y= data[ylabel].values
     #plt.subplot(1, 4, 1)
-    title = 'Daily PCA'
+    sns.distplot(data['pct_SnP'] - 1, bins=50).set_title('Daily Distribution')
+    plt.show()
+    title = 'Daily'
     GuassianNB_model_daily,KNeighbor_model_daily,SVC_model_pipline_daily_standard, SVC_model_pipline_daily_minmax,df_daily =GNB_KN_SVC_SVC1 (data_x,data_y,n,m,title)
 
     filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Monthly_Insoo.csv"
@@ -175,7 +177,9 @@ def main():
     monthly_x = monthly_data[xlabel].values
     monthly_y= monthly_data[ylabel].values
     #plt.subplot(1, 4, 2)
-    title = 'Monthly PCA'
+    sns.distplot(monthly_data['pct_SnP'] - 1, bins=40).set_title('Monthly Distribution')
+    plt.show()
+    title = 'Monthly'
     GuassianNB_model_monthly,KNeighbor_model_monthly,SVC_model_pipline_monthly_standard, SVC_model_pipline_monthly_minmax,df_monthly =GNB_KN_SVC_SVC1 ( monthly_x,monthly_y,n, m,title)
     #GNB_PCA_monthly,KN_PCA_monthly,SVC_PCA_monthly,SVC_PCA_monthly_minmax=GNB_KN_SVC_SVC1 (get_pca(monthly_x),monthly_y,n)
     #pca_m(monthly_x,monthly_y,6)
@@ -185,7 +189,9 @@ def main():
     quarterly_x = quarterly_data[xlabel].values
     quarterly_y= quarterly_data[ylabel].values
     #plt.subplot(1, 4, 3)
-    title = 'Quarterly PCA'
+    sns.distplot(quarterly_data['pct_SnP'] - 1, bins=30).set_title('Quarterly Distribution')
+    plt.show()
+    title = 'Quarterly'
     GuassianNB_model_quarterly,KNeighbor_model_quarterly,SVC_model_pipline_quarterly_standard, SVC_model_pipline_quarterly_minmax,df_quarterly =GNB_KN_SVC_SVC1 ( quarterly_x,quarterly_y,n,m,title)
     #GNB_PCA_quarterly,KN_PCA_quarterly,SVC_PCA_quarterly,SVC_PCA_quarterly_minmax=GNB_KN_SVC_SVC1 (get_pca(quarterly_x),quarterly_y,n)
 
@@ -194,7 +200,9 @@ def main():
     yearly_x = yearly_data[xlabel].values
     yearly_y= yearly_data[ylabel].values
     #plt.subplot(1, 4, 4)
-    title = 'Yearly PCA'
+    sns.distplot(yearly_data['pct_SnP'] - 1, bins=20).set_title('Yearly Distribution')
+    plt.show()
+    title = 'Yearly'
     GuassianNB_model_yearly,KNeighbor_model_yearly,SVC_model_pipline_yearly_standard, SVC_model_pipline_yearly_minmax,df_yearly =GNB_KN_SVC_SVC1 ( yearly_x,yearly_y,n,m,title)
     #GNB_PCA_yearly,KN_PCA_yearly,SVC_PCA_yearly,SVC_PCA_yearly_minmax=GNB_KN_SVC_SVC1 (get_pca(data_x),data_y,n)
 
