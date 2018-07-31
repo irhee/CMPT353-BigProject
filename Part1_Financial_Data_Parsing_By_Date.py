@@ -281,20 +281,21 @@ titles = ['SnP', 'GDP', 'MonetaryBase', 'CPI', 'HomePrice', 'Loans', 'Employment
          'Income', 'ConstructionSpending', 'FedFundRate', 'USDollar', 'CrudeOil', 'Import_Unit_Value',
           'Import_Volume', 'Import_Value', 'Export_Unit_Value', 'Export_Volume', 'Export_Value' ]
 
+#Yearly
 for title in titles:
     data[title + "2"] = data[title].shift(-1)
-data = data.dropna()
+data1 = data.dropna()
 
 for title in titles:
-    data["pct_" + title] = 1 + (data[title+"2"] - data[title])/data[title]
+    data1["pct_" + title] = 1 + (data1[title+"2"] - data1[title])/data1[title]
 
-data['long_short'] = data['pct_SnP'].apply(is_long_short)
+data1['long_short'] = data1['pct_SnP'].apply(is_long_short)
+data1 = data1.reset_index()
 out_filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Daily_Insoo.csv"
-data.to_csv(out_filename, sep=',', encoding='utf-8')
+data1.to_csv(out_filename, sep=',', encoding='utf-8')
 
-for title in titles:
-    data = data.drop(columns=["pct_" + title])
 
+#Monthly
 monthly_data = pd.DataFrame()
 year = data['Year'].unique()
 month = data['Month'].unique()
@@ -304,12 +305,18 @@ for y in year:
         monthly_data = monthly_data.append(coco.iloc[0][:])
 
 for title in titles:
+    monthly_data[title + "2"] = monthly_data[title].shift(-1)
+monthly_data = monthly_data.dropna()
+
+for title in titles:
     monthly_data["pct_" + title] = 1 + (monthly_data[title+"2"] - monthly_data[title])/monthly_data[title]
 
 monthly_data['long_short'] = monthly_data['pct_SnP'].apply(is_long_short)
+monthly_data = monthly_data.reset_index()
 out_filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Monthly_Insoo.csv"
 monthly_data.to_csv(out_filename, sep=',', encoding='utf-8')
 
+#Quarterly
 quarterly_data = pd.DataFrame()
 month = [1,4,7,10]
 for y in year:
@@ -318,9 +325,14 @@ for y in year:
         quarterly_data = quarterly_data.append(coco.iloc[0][:])
 
 for title in titles:
+    quarterly_data[title + "2"] = quarterly_data[title].shift(-1)
+quarterly_data = quarterly_data.dropna()
+
+for title in titles:
     quarterly_data["pct_" + title] = 1 + (quarterly_data[title+"2"] - quarterly_data[title])/quarterly_data[title]
 
 quarterly_data['long_short'] = quarterly_data['pct_SnP'].apply(is_long_short)
+quarterly_data = quarterly_data.reset_index()
 out_filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Quarterly_Insoo.csv"
 quarterly_data.to_csv(out_filename, sep=',', encoding='utf-8')
 
@@ -330,8 +342,13 @@ for y in year:
     yearly_data = yearly_data.append(coco.iloc[0][:])
 
 for title in titles:
+    yearly_data[title + "2"] = yearly_data[title].shift(-1)
+yearly_data = yearly_data.dropna()
+
+for title in titles:
     yearly_data["pct_" + title] = 1 + (yearly_data[title+"2"] - yearly_data[title])/yearly_data[title]
 
 yearly_data['long_short'] = yearly_data['pct_SnP'].apply(is_long_short)
+yearly_data = yearly_data.reset_index()
 out_filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Yearly_Insoo.csv"
 yearly_data.to_csv(out_filename, sep=',', encoding='utf-8')

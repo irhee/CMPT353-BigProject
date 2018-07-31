@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set(style="whitegrid")
+from scipy.stats import norm
+
 
 from scipy import stats
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
@@ -167,7 +169,9 @@ def main():
     data_x = data[xlabel].values
     data_y= data[ylabel].values
     #plt.subplot(1, 4, 1)
-    sns.distplot(data['pct_SnP'] - 1, bins=50).set_title('Daily Distribution')
+    plt.hist(data['pct_SnP'] - 1, bins=45, alpha=0.5)
+    plt.suptitle("Daily Distribution")
+    #sns.distplot(data['pct_SnP'] - 1, fit=norm, kde=False, bins=100).set_title('Daily Distribution')
     plt.show()
     title = 'Daily'
     GuassianNB_model_daily,KNeighbor_model_daily,SVC_model_pipline_daily_standard, SVC_model_pipline_daily_minmax,df_daily =GNB_KN_SVC_SVC1 (data_x,data_y,n,m,title)
@@ -177,7 +181,9 @@ def main():
     monthly_x = monthly_data[xlabel].values
     monthly_y= monthly_data[ylabel].values
     #plt.subplot(1, 4, 2)
-    sns.distplot(monthly_data['pct_SnP'] - 1, bins=40).set_title('Monthly Distribution')
+    plt.hist(monthly_data['pct_SnP'] - 1, bins=35, alpha=0.5)
+    plt.suptitle("Monthly Distribution")
+    #sns.distplot(monthly_data['pct_SnP'] - 1, fit=norm, kde=False, bins=40).set_title('Monthly Distribution')
     plt.show()
     title = 'Monthly'
     GuassianNB_model_monthly,KNeighbor_model_monthly,SVC_model_pipline_monthly_standard, SVC_model_pipline_monthly_minmax,df_monthly =GNB_KN_SVC_SVC1 ( monthly_x,monthly_y,n, m,title)
@@ -189,7 +195,9 @@ def main():
     quarterly_x = quarterly_data[xlabel].values
     quarterly_y= quarterly_data[ylabel].values
     #plt.subplot(1, 4, 3)
-    sns.distplot(quarterly_data['pct_SnP'] - 1, bins=30).set_title('Quarterly Distribution')
+    plt.hist(quarterly_data['pct_SnP'] - 1, bins=25, alpha=0.5)
+    plt.suptitle("Quarterly Distribution")
+    #sns.distplot(quarterly_data['pct_SnP'] - 1, fit=norm, kde=False, bins=20).set_title('Quarterly Distribution')
     plt.show()
     title = 'Quarterly'
     GuassianNB_model_quarterly,KNeighbor_model_quarterly,SVC_model_pipline_quarterly_standard, SVC_model_pipline_quarterly_minmax,df_quarterly =GNB_KN_SVC_SVC1 ( quarterly_x,quarterly_y,n,m,title)
@@ -200,7 +208,9 @@ def main():
     yearly_x = yearly_data[xlabel].values
     yearly_y= yearly_data[ylabel].values
     #plt.subplot(1, 4, 4)
-    sns.distplot(yearly_data['pct_SnP'] - 1, bins=20).set_title('Yearly Distribution')
+    plt.hist(yearly_data['pct_SnP'] - 1, bins=15, alpha=0.5)
+    plt.suptitle("Yearly Distribution")
+    #sns.distplot(yearly_data['pct_SnP'] - 1, fit=norm, kde=False, bins=10).set_title('Yearly Distribution')
     plt.show()
     title = 'Yearly'
     GuassianNB_model_yearly,KNeighbor_model_yearly,SVC_model_pipline_yearly_standard, SVC_model_pipline_yearly_minmax,df_yearly =GNB_KN_SVC_SVC1 ( yearly_x,yearly_y,n,m,title)

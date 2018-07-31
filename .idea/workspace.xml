@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82c54e76-1df6-4390-b292-77c6055d2b37" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Part1_Financial_Data_Parsing_By_Date.py" beforeDir="false" afterPath="$PROJECT_DIR$/Part1_Financial_Data_Parsing_By_Date.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Part2_Classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/Part2_Classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Daily_Insoo.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Monthly_Insoo.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Quarterly_Insoo.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Yearly_Insoo.csv" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Part2_Classification.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Part2_Classification.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Part2_Classification.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="193" column="20" selection-start-line="193" selection-start-column="20" selection-end-line="193" selection-end-column="20" />
+            <state relative-caret-position="-599">
+              <caret line="197" column="9" selection-start-line="197" selection-start-column="9" selection-end-line="197" selection-end-column="9" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -34,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Part1_Financial_Data_Parsing_By_Date.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Part1_Financial_Data_Parsing_By_Date.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Part1_Financial_Data_Parsing_By_Date.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1666">
-              <caret line="46" column="61" lean-forward="true" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="61" />
+            <state relative-caret-position="108">
+              <caret line="292" column="8" selection-start-line="292" selection-start-column="8" selection-end-line="292" selection-end-column="8" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -52,9 +58,10 @@
     <findStrings>
       <find>head()</find>
       <find>titles</find>
-      <find>All-Transactions House Price Index for the United StatesUSSTHPI.csv</find>
+      <find />
       <find>titles_wo_SnP</find>
       <find>pca</find>
+      <find>Name_O[Indicator][i]</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -67,8 +74,8 @@
         <option value="$PROJECT_DIR$/Financial_Data_Parsing_By_Date.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Part2_Classification_elmira.py" />
-        <option value="$PROJECT_DIR$/Part1_Financial_Data_Parsing_By_Date.py" />
         <option value="$PROJECT_DIR$/Part2_Classification.py" />
+        <option value="$PROJECT_DIR$/Part1_Financial_Data_Parsing_By_Date.py" />
       </list>
     </option>
   </component>
@@ -82,9 +89,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1213" />
-    <option name="width" value="714" />
-    <option name="height" value="1038" />
+    <option name="x" value="1211" />
+    <option name="width" value="715" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -97,11 +104,6 @@
             <path>
               <item name="CMPT353-BigProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="CMPT353-BigProject" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CMPT353-BigProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CMPT353-BigProject" type="462c0819:PsiDirectoryNode" />
-              <item name="Ultimate_Data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -155,13 +157,13 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32909605" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50067115" side_tool="true" weight="0.549435" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Python Console" order="7" weight="0.55" />
+      <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.49932885" weight="0.549435" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.43644068" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20268457" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.43361583" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2080537" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" weight="0.5228188" />
@@ -210,37 +212,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$USER_HOME$/OneDrive - sfu.ca/CMPT353/excercises/my_e8/colour_predict.py</url>
+          <url />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="1" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Part1_Financial_Data_Parsing_By_Date.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="59" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="12" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Part2_Classification.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2669">
-          <caret line="177" column="21" selection-start-line="177" selection-start-column="6" selection-end-line="177" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Part2_Classification.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -434,13 +412,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Daily_Insoo.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-97076">
-          <caret line="17" column="370" selection-start-line="17" selection-start-column="370" selection-end-line="17" selection-end-column="370" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/OneDrive - sfu.ca/CMPT353/excercises/my_e8/weather_city.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -458,23 +429,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Yearly_Insoo.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="145" lean-forward="true" selection-start-line="14" selection-start-column="145" selection-end-line="14" selection-end-column="145" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Part1_Financial_Data_Parsing_By_Date.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1666">
-          <caret line="46" column="61" lean-forward="true" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/353 project-notes.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -482,10 +436,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitattributes">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Daily_Insoo.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-96980">
+          <caret line="17" column="370" selection-start-line="17" selection-start-column="370" selection-end-line="17" selection-end-column="370" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Yearly_Insoo.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="145" selection-start-line="14" selection-start-column="145" selection-end-line="14" selection-end-column="145" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Quarterly_Insoo.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Monthly_Insoo.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Part2_Classification.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="193" column="20" selection-start-line="193" selection-start-column="20" selection-end-line="193" selection-end-column="20" />
+        <state relative-caret-position="-599">
+          <caret line="197" column="9" selection-start-line="197" selection-start-column="9" selection-end-line="197" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Part1_Financial_Data_Parsing_By_Date.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="292" column="8" selection-start-line="292" selection-start-column="8" selection-end-line="292" selection-end-column="8" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
