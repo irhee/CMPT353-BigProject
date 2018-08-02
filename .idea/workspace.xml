@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82c54e76-1df6-4390-b292-77c6055d2b37" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Part2_Classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/Part2_Classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Part2_Classification.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Part2_Classification.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Part2_Classification.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="379">
@@ -21,6 +21,15 @@
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="107" lean-forward="true" selection-start-line="9" selection-start-column="107" selection-end-line="9" selection-end-column="107" />
             </state>
           </provider>
         </entry>
@@ -66,10 +75,10 @@
       <list>
         <option value="$PROJECT_DIR$/Data_Parsing_July7th.py" />
         <option value="$PROJECT_DIR$/Financial_Data_Parsing_By_Date.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Part2_Classification_elmira.py" />
         <option value="$PROJECT_DIR$/Part1_Financial_Data_Parsing_By_Date.py" />
         <option value="$PROJECT_DIR$/Part2_Classification.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -161,8 +170,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.49932885" weight="0.549435" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.39689267" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18926175" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.5155367" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18926175" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" weight="0.5228188" />
@@ -390,13 +399,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Hello.txt" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="12" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Part2_Classification.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-800">
@@ -469,6 +471,13 @@
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="107" lean-forward="true" selection-start-line="9" selection-start-column="107" selection-end-line="9" selection-end-column="107" />
         </state>
       </provider>
     </entry>
