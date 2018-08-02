@@ -143,9 +143,10 @@ def main():
     data_y= data[ylabel].values
     GuassianNB_model_daily,KNeighbor_model_daily,SVC_model_pipline_daily_standard, SVC_model_pipline_daily_minmax,df_daily =GNB_KN_SVC_SVC1 (data_x,data_y,n,m)
     plt.subplot(1, 2, 2)
-    title = 'Daily'
-    plt.hist(data['pct_SnP'] - 1, bins=45, alpha=0.5)
+    plt.hist(data['pct_SnP'], bins=405, alpha=0.5)
     plt.suptitle("Daily Distribution")
+    plt.axis('tight')
+    plt.xlim(-0.065, 0.065)
     plt.show()
     
     filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Monthly_Insoo.csv"
@@ -155,9 +156,10 @@ def main():
     m=12
     GuassianNB_model_monthly,KNeighbor_model_monthly,SVC_model_pipline_monthly_standard, SVC_model_pipline_monthly_minmax,df_monthly =GNB_KN_SVC_SVC1 ( monthly_x,monthly_y,n, m)
     plt.subplot(1, 2, 2)
-    title = 'Monthly'
-    plt.hist(monthly_data['pct_SnP'] - 1, bins=45, alpha=0.5)
+    plt.hist(monthly_data['pct_SnP'], bins=45, alpha=0.5)
     plt.suptitle("Monthly Distribution")
+    plt.axis('tight')
+    plt.xlim(-0.125, 0.125)
     plt.show()
 
     filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Quarterly_Insoo.csv"
@@ -167,9 +169,9 @@ def main():
     m=6
     GuassianNB_model_quarterly,KNeighbor_model_quarterly,SVC_model_pipline_quarterly_standard, SVC_model_pipline_quarterly_minmax,df_quarterly =GNB_KN_SVC_SVC1 ( quarterly_x,quarterly_y,n,m)
     plt.subplot(1, 2, 2)
-    title = 'Quarterly'
-    plt.hist(quarterly_data['pct_SnP'] - 1, bins=45, alpha=0.5)
+    plt.hist(quarterly_data['pct_SnP'], bins=15, alpha=0.5)
     plt.suptitle("Quarterly Distribution")
+    plt.axis('tight')
     plt.show()
 
 
@@ -180,9 +182,9 @@ def main():
     m=3
     GuassianNB_model_yearly,KNeighbor_model_yearly,SVC_model_pipline_yearly_standard, SVC_model_pipline_yearly_minmax,df_yearly =GNB_KN_SVC_SVC1 ( yearly_x,yearly_y,n,m)
     plt.subplot(1, 2, 2)
-    title = 'Yearly'
-    plt.hist(yearly_data['pct_SnP'] - 1, bins=45, alpha=0.5)
+    plt.hist(yearly_data['pct_SnP'], bins=7, alpha=0.5)
     plt.suptitle("yearly Distribution")
+    plt.axis('tight')
     plt.show()
 
 

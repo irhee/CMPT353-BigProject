@@ -10,7 +10,7 @@ pd.set_option('display.float_format', '{:}'.format)
 
 #Classify Long==1, Short==0
 def is_long_short(num):
-    if (1.00 > num):
+    if (0 > num):
         return 0
     else:
         return 1
@@ -287,7 +287,8 @@ for title in titles:
 data1 = data.dropna()
 
 for title in titles:
-    data1["pct_" + title] = 1 + (data1[title+"2"] - data1[title])/data1[title]
+    data1["pct_" + title] = (data1[title+"2"] - data1[title])/data1[title]
+    #data1["pct_" + title] = 1 + (data1[title+"2"] - data1[title])/data1[title]
 
 data1['long_short'] = data1['pct_SnP'].apply(is_long_short)
 data1 = data1.reset_index()
@@ -309,7 +310,8 @@ for title in titles:
 monthly_data = monthly_data.dropna()
 
 for title in titles:
-    monthly_data["pct_" + title] = 1 + (monthly_data[title+"2"] - monthly_data[title])/monthly_data[title]
+    monthly_data["pct_" + title] = (monthly_data[title+"2"] - monthly_data[title])/monthly_data[title]
+    #monthly_data["pct_" + title] = 1 + (monthly_data[title+"2"] - monthly_data[title])/monthly_data[title]
 
 monthly_data['long_short'] = monthly_data['pct_SnP'].apply(is_long_short)
 monthly_data = monthly_data.reset_index()
@@ -329,7 +331,8 @@ for title in titles:
 quarterly_data = quarterly_data.dropna()
 
 for title in titles:
-    quarterly_data["pct_" + title] = 1 + (quarterly_data[title+"2"] - quarterly_data[title])/quarterly_data[title]
+    quarterly_data["pct_" + title] = (quarterly_data[title+"2"] - quarterly_data[title])/quarterly_data[title]
+    #quarterly_data["pct_" + title] = 1 + (quarterly_data[title+"2"] - quarterly_data[title])/quarterly_data[title]
 
 quarterly_data['long_short'] = quarterly_data['pct_SnP'].apply(is_long_short)
 quarterly_data = quarterly_data.reset_index()
@@ -346,7 +349,8 @@ for title in titles:
 yearly_data = yearly_data.dropna()
 
 for title in titles:
-    yearly_data["pct_" + title] = 1 + (yearly_data[title+"2"] - yearly_data[title])/yearly_data[title]
+    yearly_data["pct_" + title] = (yearly_data[title+"2"] - yearly_data[title])/yearly_data[title]
+    #yearly_data["pct_" + title] = 1 + (yearly_data[title+"2"] - yearly_data[title])/yearly_data[title]
 
 yearly_data['long_short'] = yearly_data['pct_SnP'].apply(is_long_short)
 yearly_data = yearly_data.reset_index()
