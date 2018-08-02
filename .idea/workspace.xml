@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82c54e76-1df6-4390-b292-77c6055d2b37" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part1_Financial_Data_Parsing_By_Date.py" beforeDir="false" afterPath="$PROJECT_DIR$/Part1_Financial_Data_Parsing_By_Date.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Part2_Classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/Part2_Classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tips1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Daily_Insoo.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Monthly_Insoo.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Quarterly_Insoo.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Yearly_Insoo.csv" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,11 +16,20 @@
       <file leaf-file-name="Part2_Classification.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Part2_Classification.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="152" column="21" lean-forward="true" selection-start-line="152" selection-start-column="21" selection-end-line="152" selection-end-column="21" />
+            <state relative-caret-position="379">
+              <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Ultimate_Assortion_pct_Change_Daily_Insoo.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Daily_Insoo.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="727" selection-start-column="717" selection-end-column="727" />
             </state>
           </provider>
         </entry>
@@ -80,7 +82,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="952" />
     <option name="width" value="977" />
     <option name="height" value="1038" />
@@ -150,7 +152,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="762" y="0" width="781" height="830" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32909605" />
@@ -159,8 +161,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.49932885" weight="0.549435" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.7057143" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.4674064" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.39689267" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18926175" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" weight="0.5228188" />
@@ -430,13 +432,6 @@
     <entry file="file://$PROJECT_DIR$/.gitattributes">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Daily_Insoo.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-96980">
-          <caret line="17" column="370" selection-start-line="17" selection-start-column="370" selection-end-line="17" selection-end-column="370" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Yearly_Insoo.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -450,6 +445,13 @@
     <entry file="file://$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Monthly_Insoo.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/Ultimate_Data/Ultimate_Assortion_pct_Change_Daily_Insoo.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="727" selection-start-column="717" selection-end-column="727" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Part1_Financial_Data_Parsing_By_Date.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -462,8 +464,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Part2_Classification.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="152" column="21" lean-forward="true" selection-start-line="152" selection-start-column="21" selection-end-line="152" selection-end-column="21" />
+        <state relative-caret-position="379">
+          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
