@@ -67,22 +67,21 @@ def get_pca(X):
     assert X2.shape == (X.shape[0], 2)
     return X2
 
+    
 def get_clusters(X,no_clusters):
-
-    model = make_pipeline(
-        # TODO
+    model=make_pipeline(
         StandardScaler(),
         KMeans(n_clusters=no_clusters)
     )
     model.fit(X)
     return model.predict(X)
 
-def GNB_KN_SVC_SVC1 (X,y,n,no_clusters,title):
+def GNB_KN_SVC_SVC1 (X,y,n,no_clusters):
 
     X_train, X_test, y_train, y_test = train_test_split(X, y)
 
-    sns.countplot(y, palette='hls').set_title(title + " Count")
-    plt.show()
+    #sns.countplot(y, palette='hls').set_title(title + " Count")
+    #plt.show()
 
     GuassianNB_model = GaussianNB()
     GuassianNB_model.fit(X_train, y_train)
@@ -111,16 +110,12 @@ def GNB_KN_SVC_SVC1 (X,y,n,no_clusters,title):
 
     X2 = get_pca(X)
     clusters = get_clusters(X,no_clusters)
-    dd = pd.DataFrame({
-        'x':X2[:, 0],
-        'y':X2[:, 1],
-        'cluster':clusters
-    })
+    plt.subplot(1, 2, 1)
+    plt.title('data after PCA transform ')
+    plt.ylabel('X_pca[:,1]')
+    plt.xlabel('X_pca[:,0]')
 
-    sns.scatterplot(x='x',y='y', hue='cluster', data=dd).set_title(title + " PCA")
-    plt.show()
-
-    #plt.scatter(X2[:, 0], X2[:, 1], c=clusters, cmap='Set1', edgecolor='k')
+    plt.scatter(X2[:, 0], X2[:, 1], c=clusters, cmap='Set1', edgecolor='k')
     df = pd.DataFrame({
         'cluster': clusters,
         'long_short': y,
@@ -133,88 +128,62 @@ def GNB_KN_SVC_SVC1 (X,y,n,no_clusters,title):
 
 def main():
 
-    filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Daily_Insoo.csv"
-    data = pd.read_csv(filename, sep=',', encoding='utf-8')
-
-    titles = [ 'GDP', 'MonetaryBase', 'CPI', 'HomePrice', 'Loans', 'Employment',
-             'Income', 'ConstructionSpending', 'FedFundRate', 'USDollar', 'CrudeOil', 'Import_Unit_Value',
-              'Import_Volume', 'Import_Value', 'Export_Unit_Value', 'Export_Volume', 'Export_Value' ]
-
-    X = data[titles].values
-    y = data['SnP'].values
-    X_train, X_test, y_train, y_test = train_test_split(X, y)
-
-    LinearRegression_model = LinearRegression(fit_intercept=True)
-    LinearRegression_model.fit(X_train, y_train)
-    Y_fit_simple_linear = LinearRegression_model.predict(X_test)
-
-    poly_model = PolynomialFeatures(degree=3, include_bias=True)
-    X_poly_train = poly_model.fit_transform(X_train)
-    poly_LinearRegression_model = LinearRegression(fit_intercept=True)
-    poly_LinearRegression_model.fit(X_poly_train, y_train)
-    X_poly_test = poly_model.fit_transform(X_test)
-    Y_fit_poly_linear = poly_LinearRegression_model.predict(X_poly_test)
-
     xlabel = ['pct_GDP', 'pct_MonetaryBase', 'pct_CPI', 'pct_HomePrice', 'pct_Loans', 'pct_Employment',
                'pct_Income', 'pct_ConstructionSpending', 'pct_FedFundRate','pct_USDollar', 'pct_CrudeOil',
                'pct_Import_Unit_Value', 'pct_Import_Volume', 'pct_Import_Value', 'pct_Export_Unit_Value', 'pct_Export_Volume', 'pct_Export_Value'
                ]
 
     n = 5 #knn
-    m=2 #no_cluster
+    m=24 #no_cluster
     ylabel='long_short'
 
     filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Daily_Insoo.csv"
     data = pd.read_csv(filename, sep=',', encoding='utf-8')
     data_x = data[xlabel].values
     data_y= data[ylabel].values
-    #plt.subplot(1, 4, 1)
+    GuassianNB_model_daily,KNeighbor_model_daily,SVC_model_pipline_daily_standard, SVC_model_pipline_daily_minmax,df_daily =GNB_KN_SVC_SVC1 (data_x,data_y,n,m)
+    plt.subplot(1, 2, 2)
+    title = 'Daily'
     plt.hist(data['pct_SnP'] - 1, bins=45, alpha=0.5)
     plt.suptitle("Daily Distribution")
-    #sns.distplot(data['pct_SnP'] - 1, fit=norm, kde=False, bins=100).set_title('Daily Distribution')
     plt.show()
-    title = 'Daily'
-    GuassianNB_model_daily,KNeighbor_model_daily,SVC_model_pipline_daily_standard, SVC_model_pipline_daily_minmax,df_daily =GNB_KN_SVC_SVC1 (data_x,data_y,n,m,title)
-
+    
     filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Monthly_Insoo.csv"
     monthly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
     monthly_x = monthly_data[xlabel].values
     monthly_y= monthly_data[ylabel].values
-    #plt.subplot(1, 4, 2)
-    plt.hist(monthly_data['pct_SnP'] - 1, bins=35, alpha=0.5)
-    plt.suptitle("Monthly Distribution")
-    #sns.distplot(monthly_data['pct_SnP'] - 1, fit=norm, kde=False, bins=40).set_title('Monthly Distribution')
-    plt.show()
+    m=12
+    GuassianNB_model_monthly,KNeighbor_model_monthly,SVC_model_pipline_monthly_standard, SVC_model_pipline_monthly_minmax,df_monthly =GNB_KN_SVC_SVC1 ( monthly_x,monthly_y,n, m)
+    plt.subplot(1, 2, 2)
     title = 'Monthly'
-    GuassianNB_model_monthly,KNeighbor_model_monthly,SVC_model_pipline_monthly_standard, SVC_model_pipline_monthly_minmax,df_monthly =GNB_KN_SVC_SVC1 ( monthly_x,monthly_y,n, m,title)
-    #GNB_PCA_monthly,KN_PCA_monthly,SVC_PCA_monthly,SVC_PCA_monthly_minmax=GNB_KN_SVC_SVC1 (get_pca(monthly_x),monthly_y,n)
-    #pca_m(monthly_x,monthly_y,6)
+    plt.hist(monthly_data['pct_SnP'] - 1, bins=45, alpha=0.5)
+    plt.suptitle("Monthly Distribution")
+    plt.show()
 
     filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Quarterly_Insoo.csv"
     quarterly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
     quarterly_x = quarterly_data[xlabel].values
     quarterly_y= quarterly_data[ylabel].values
-    #plt.subplot(1, 4, 3)
-    plt.hist(quarterly_data['pct_SnP'] - 1, bins=25, alpha=0.5)
-    plt.suptitle("Quarterly Distribution")
-    #sns.distplot(quarterly_data['pct_SnP'] - 1, fit=norm, kde=False, bins=20).set_title('Quarterly Distribution')
-    plt.show()
+    m=6
+    GuassianNB_model_quarterly,KNeighbor_model_quarterly,SVC_model_pipline_quarterly_standard, SVC_model_pipline_quarterly_minmax,df_quarterly =GNB_KN_SVC_SVC1 ( quarterly_x,quarterly_y,n,m)
+    plt.subplot(1, 2, 2)
     title = 'Quarterly'
-    GuassianNB_model_quarterly,KNeighbor_model_quarterly,SVC_model_pipline_quarterly_standard, SVC_model_pipline_quarterly_minmax,df_quarterly =GNB_KN_SVC_SVC1 ( quarterly_x,quarterly_y,n,m,title)
-    #GNB_PCA_quarterly,KN_PCA_quarterly,SVC_PCA_quarterly,SVC_PCA_quarterly_minmax=GNB_KN_SVC_SVC1 (get_pca(quarterly_x),quarterly_y,n)
+    plt.hist(quarterly_data['pct_SnP'] - 1, bins=45, alpha=0.5)
+    plt.suptitle("Quarterly Distribution")
+    plt.show()
+
 
     filename = "Ultimate_Data" + "\\" + "Ultimate_Assortion_pct_Change_Yearly_Insoo.csv"
     yearly_data = pd.read_csv(filename, sep=',', encoding='utf-8')
     yearly_x = yearly_data[xlabel].values
     yearly_y= yearly_data[ylabel].values
-    #plt.subplot(1, 4, 4)
-    plt.hist(yearly_data['pct_SnP'] - 1, bins=15, alpha=0.5)
-    plt.suptitle("Yearly Distribution")
-    #sns.distplot(yearly_data['pct_SnP'] - 1, fit=norm, kde=False, bins=10).set_title('Yearly Distribution')
-    plt.show()
+    m=3
+    GuassianNB_model_yearly,KNeighbor_model_yearly,SVC_model_pipline_yearly_standard, SVC_model_pipline_yearly_minmax,df_yearly =GNB_KN_SVC_SVC1 ( yearly_x,yearly_y,n,m)
+    plt.subplot(1, 2, 2)
     title = 'Yearly'
-    GuassianNB_model_yearly,KNeighbor_model_yearly,SVC_model_pipline_yearly_standard, SVC_model_pipline_yearly_minmax,df_yearly =GNB_KN_SVC_SVC1 ( yearly_x,yearly_y,n,m,title)
-    #GNB_PCA_yearly,KN_PCA_yearly,SVC_PCA_yearly,SVC_PCA_yearly_minmax=GNB_KN_SVC_SVC1 (get_pca(data_x),data_y,n)
+    plt.hist(yearly_data['pct_SnP'] - 1, bins=45, alpha=0.5)
+    plt.suptitle("yearly Distribution")
+    plt.show()
 
 
     print(OUTPUT_TEMPLATE.format(
